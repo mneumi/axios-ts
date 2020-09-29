@@ -1,4 +1,5 @@
 import { isDate, isPlainObject } from './utils';
+import { IParams } from '../types';
 
 function encode(val: string): string {
   return encodeURIComponent(val)
@@ -11,7 +12,7 @@ function encode(val: string): string {
     .replace(/%5D/ig, ']');
 }
 
-export function processURL(url: string, params?: any): string {
+export function processURL(url: string, params?: IParams): string {
   if (!params) {
     return url;
   }

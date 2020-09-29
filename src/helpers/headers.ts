@@ -1,6 +1,7 @@
 import { isPlainObject } from './utils';
+import { IHeaders, IData } from '../types';
 
-export function processHeaders(headers: any, data: any): any {
+export function processHeaders(headers: IHeaders, data: IData): IHeaders {
   normalizeHeaderName(headers, "Content-Type");
 
   if (isPlainObject(data)) {
@@ -12,7 +13,7 @@ export function processHeaders(headers: any, data: any): any {
   return headers;
 }
 
-function normalizeHeaderName(headers: any, normalizeName: string): void {
+function normalizeHeaderName(headers: IHeaders, normalizeName: string): void {
   Object.keys(headers).forEach(name => {
     if (name !== normalizeName && name.toUpperCase() === normalizeName.toUpperCase()) {
       headers[normalizeName] = headers[name];
@@ -21,7 +22,7 @@ function normalizeHeaderName(headers: any, normalizeName: string): void {
   })
 }
 
-export function parseHeaders(headers: string): any {
+export function parseHeaders(headers: string): IHeaders {
   let parsed = Object.create(null);
   if (!headers) {
     return parsed;
